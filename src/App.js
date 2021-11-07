@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import { Button, Typography } from "antd";
+import { useHistory } from "react-router";
 
-function App() {
+import "./App.css";
+
+const { Title } = Typography;
+const AppDiv = styled.div`
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+const OptionButtons = styled.div`
+  width: 25%;
+  display: flex;
+  justify-content: space-evenly;
+  @media (max-width: 1200px) {
+    width: 50%;
+  } ;
+`;
+const App = () => {
+  const history = useHistory();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <AppDiv>
+      <Title style={{ fontSize: "3rem", fontWeight: 600 }}>Invoicing App</Title>
+      <OptionButtons>
+        <Button
+          size="large"
+          type="primary"
+          onClick={() => history.push("/create-invoice")}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Create Invoice
+        </Button>
+        <Button size="large" onClick={() => history.push("/invoices")}>
+          View Invoices
+        </Button>
+      </OptionButtons>
+    </AppDiv>
   );
-}
+};
 
 export default App;
